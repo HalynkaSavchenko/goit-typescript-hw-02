@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { SearchResponse } from './types'
 
 axios.defaults.baseURL = 'https://api.unsplash.com';
 
 const ACCESS_KEY = '6nDLBNSh_BS4DoWCbvaZUVp9Yf8CTTNWzejqNlnFLac';
 
-export const fetchData = async (searchQuery, currentPage) => {
-    const response = await axios.get('/search/photos', {
+export const fetchData = async (searchQuery: string, currentPage: number): Promise<SearchResponse> => {
+    const response = await axios.get<SearchResponse>('/search/photos', {
         params: {
             query: searchQuery,
             page: currentPage,
@@ -16,4 +17,4 @@ export const fetchData = async (searchQuery, currentPage) => {
     });
     
     return response.data
-}
+};

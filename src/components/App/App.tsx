@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from '../../image-api';
+import { Photo } from '../../types'
 import SearchBar from '../SearchBar/SearchBar';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
@@ -10,30 +11,30 @@ import ImageModal from '../ImageModal/ImageModal';
 
 export default function App() {
     // стани
-    const [images, setImages] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(false);
-    const [page, setPage] = useState(1);
-    const [query, setQuery] = useState('');
-    const [modalImageData, setModalImageData] =useState([]);
-    const [isOpen, setIsOpen] = useState(false);
-    const [showBtn, setShowBtn] = useState(false);
+    const [images, setImages] = useState<Photo[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+    const [query, setQuery] = useState<string>('');
+    const [modalImageData, setModalImageData] =useState<Photo[] | null>([]);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [showBtn, setShowBtn] = useState<boolean>(false);
     
 
     // ф-я пошуку
-    const handleSearch = (newQuery) => {
+    const handleSearch = (newQuery: string): void => {
         setQuery(newQuery);
         setPage(1);
         setImages([]);
     };
 
     // ф-я завант наст сторінки
-    const handleLoadMore = () => {
+    const handleLoadMore = (): void => {
         setPage(page+1)
     };
 
     // ф-я при кліку для виклику модалки
-    const handleImageClick = (imageData) => {
+    const handleImageClick = (imageData: Photo[]): void => {
         setModalImageData(imageData);
         setIsOpen(true);}
 
@@ -44,13 +45,13 @@ export default function App() {
         }
     
         // запит
-    async function getImages () {
+        async function getImages (): Promise<void> {
         try {
             setError(false);
             setIsLoading(true);
             const data = await fetchData(query, page);
             const totalPages = data.total_pages;
-            setShowBtn (totalPages && totalPages !== page);
+            setShowBtn (totalPages > page);
             setImages((prevImages) => {
                 return [...prevImages, ...data.results];
             });
@@ -64,7 +65,7 @@ export default function App() {
     }, [page, query]);
 
     // ф-я для модалки
-    const handleCloseModal = () => {
+    const handleCloseModal = (): void => {
         setIsOpen(false);
         setModalImageData(null);
     };

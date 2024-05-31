@@ -1,13 +1,16 @@
-import css from './ImageCard.module.css'
-export default function ImageCard({
+import css from './ImageCard.module.css';
+import { ImageCardProps } from '../../types';
+import { FC } from 'react';
+
+export const ImageCard: FC<ImageCardProps> = ({
     onImageClick,
     alt_description,
     likes,
     urls,
     name,
     modalUrls
-}) {
-    const handleClick = () => {
+}) => {
+    const handleClick = (): void => {
         const imageData = {
             modalUrl: modalUrls
         };
