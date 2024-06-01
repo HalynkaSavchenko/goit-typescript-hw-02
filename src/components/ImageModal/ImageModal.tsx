@@ -1,6 +1,8 @@
-import Modal from 'react-modal';
+import Modal, {Styles} from 'react-modal';
+import { FC } from 'react';
+import { ImageModalProps } from '../../types'
 
-const customStyles = {
+const customStyles: Styles = {
   overlay: {
     position: 'fixed',
     top: 0,
@@ -25,7 +27,7 @@ const customStyles = {
 
   Modal.setAppElement('#root');
 
-export default function ImageModal({onClose, state, img}) {
+export const ImageModal: FC<ImageModalProps> = ({onClose, state, img}) => {
     return(
          <Modal
          isOpen={state}

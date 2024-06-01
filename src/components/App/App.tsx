@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from '../../image-api';
-import { Photo } from '../../types'
+import { Photo } from '../../types';
 import {ErrorMessage} from '../ErrorMessage/ErrorMessage';
-import SearchBar from '../SearchBar/SearchBar';
-import ImageGallery from '../ImageGallery/ImageGallery';
-import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
-import Loader from '../Loader/Loader';
-import ImageModal from '../ImageModal/ImageModal';
+import {ImageGallery} from '../ImageGallery/ImageGallery';
+import {ImageModal} from '../ImageModal/ImageModal';
+import {Loader}from '../Loader/Loader';
+import {LoadMoreBtn} from '../LoadMoreBtn/LoadMoreBtn';
+import {SearchBar} from '../SearchBar/SearchBar';
 
 
 export default function App() {
@@ -85,4 +85,4 @@ export default function App() {
             img={modalImageData}/>
         </div>
     )
-}
+};

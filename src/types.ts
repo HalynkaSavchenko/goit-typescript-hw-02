@@ -10,10 +10,10 @@ interface Urls {
 };
 
 export interface Photo {
-    alt_description: string | null;
+    alt_description: string | undefined;
     id: string;
     likes: number;
-    name: User;
+    user: User;
     urls: Urls
 };
 
@@ -24,10 +24,32 @@ export interface SearchResponse {
 };
 
 export interface ImageCardProps {
-    onImageClick:(ImageData: {modalUrl:string}) => void;
-    alt_description: string;
+    onImageClick:(ImageData: Photo[]) => void;
+    alt_description: string | undefined;
     likes: number;
     urls: string;
     name: string;
     modalUrls: string
+};
+
+export interface ImageGalleryProps {
+    items: Photo[];
+    onImageClick: (image: Photo[]) => void
+};
+
+
+export interface ImageModalProps {
+    onClose: () => void;
+    state: boolean;
+    img: Photo[] | null
+};
+
+export interface LoadMoreBtnProps {
+    onClick: () => void
+};
+
+export interface SearchBarProps {
+    onSearch: (newQuery: string) => void
 }
+
+
