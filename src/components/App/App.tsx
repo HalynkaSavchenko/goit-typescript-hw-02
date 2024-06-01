@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from '../../image-api';
 import { Photo } from '../../types'
+import {ErrorMessage} from '../ErrorMessage/ErrorMessage';
 import SearchBar from '../SearchBar/SearchBar';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import Loader from '../Loader/Loader';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import ImageModal from '../ImageModal/ImageModal';
 
 

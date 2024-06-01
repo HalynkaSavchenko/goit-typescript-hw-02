@@ -24,7 +24,7 @@ export interface SearchResponse {
 };
 
 export interface ImageCardProps {
-    onImageClick:(ImageData: {modalUrl:string});
+    onImageClick:(ImageData: {modalUrl:string}) => void;
     alt_description: string;
     likes: number;
     urls: string;
