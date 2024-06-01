@@ -11,10 +11,11 @@ export const ImageCard: FC<ImageCardProps> = ({
     modalUrls
 }) => {
     const handleClick = (): void => {
-        const imageData = {
-            modalUrl: modalUrls
-        };
-        onImageClick(imageData);
+       
+        onImageClick({
+            modalUrl: modalUrls,
+            alt_description
+        });
     };
     return(
         <div>

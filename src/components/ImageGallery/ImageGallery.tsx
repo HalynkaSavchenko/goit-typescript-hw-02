@@ -1,13 +1,11 @@
 import { FC } from 'react'
 import {ImageCard} from '../ImageCard/ImageCard';
-import { ImageGalleryProps, Photo } from '../../types'
+import { ImageGalleryProps, ModalImage, Photo } from '../../types'
 import css from './ImageGallery.module.css';
 
 export const ImageGallery: FC<ImageGalleryProps> = ({items, onImageClick}) => {
-  const handleImageClick = (image: Photo[]): void => {
-    if (onImageClick) {
+  const handleImageClick = (image: ModalImage): void => {
         onImageClick(image);
-    }
 };
 
     return(

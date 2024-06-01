@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from '../../image-api';
-import { Photo } from '../../types';
+import { ModalImage, Photo } from '../../types';
 import {ErrorMessage} from '../ErrorMessage/ErrorMessage';
 import {ImageGallery} from '../ImageGallery/ImageGallery';
 import {ImageModal} from '../ImageModal/ImageModal';
@@ -16,7 +16,7 @@ export default function App() {
     const [error, setError] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [query, setQuery] = useState<string>('');
-    const [modalImageData, setModalImageData] =useState<Photo[] | null>([]);
+    const [modalImageData, setModalImageData] =useState<ModalImage | null>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [showBtn, setShowBtn] = useState<boolean>(false);
     
@@ -34,7 +34,7 @@ export default function App() {
     };
 
     // ф-я при кліку для виклику модалки
-    const handleImageClick = (imageData: Photo[]): void => {
+    const handleImageClick = (imageData: ModalImage): void => {
         setModalImageData(imageData);
         setIsOpen(true);}
 
@@ -79,10 +79,11 @@ export default function App() {
             {images.length > 0 && <ImageGallery items={images} onImageClick={handleImageClick}/>}
             {isLoading && <Loader/>}
             {showBtn && <LoadMoreBtn onClick ={handleLoadMore}/>}
-            <ImageModal 
-            onClose={handleCloseModal}
-            state={isOpen}
-            img={modalImageData}/>
+            {modalImageData && <ImageModal 
+                   onClose={handleCloseModal}
+                   state={isOpen}
+                   img={modalImageData}/>}
+            
         </div>
     )
 };
